@@ -7026,8 +7026,7 @@ input[type=range]::-ms-thumb {
     background-color: #f5f5f5; }
 
 .project-name {
-  font-weight: bold;
-  margin-top: 0; }
+  font-weight: bold; }
 
 .project-description {
   color: #9e9e9e;
