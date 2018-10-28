@@ -1,7 +1,72 @@
-// General
-
-
 // Navbar
 .brand-logo {
     margin-left: 1rem;
+}
+
+// Projects
+.projects {
+    position: relative;
+}
+
+.project {
+    padding: 1rem;
+    transition: all 0.4s;
+    cursor: pointer;
+    &:hover {
+        background-color: #f5f5f5;
+    }
+}
+
+.project-name {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.project-description {
+    color: #9e9e9e;
+    margin-bottom: 0;
+}
+
+#new-project {
+    display: flex;
+    padding: 1rem;
+    color: #757575;
+    cursor: pointer;
+    transition: all 0.4s;
+    &:hover {
+        background-color: #eee;
+    }
+}
+
+#add-project-button {
+    position: fixed;
+    bottom: 1.4rem;
+    right: 1.4rem;
+}
+
+// Todos
+.todos {
+    padding: 0 1rem;
+}
+
+// Media queries 
+    /* Medium and up */
+@media screen and (min-width: 40em) {
+    .projects {
+        border-right: 1px solid #e0e0e0;
+    }
+}
+
+    /* Small only */
+@media screen and (max-width: 39.9375em) {
+    .header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: 99;
+    }
+
+    .content {
+        margin-top: 4rem;
+    }
 }
