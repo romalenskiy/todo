@@ -7010,8 +7010,9 @@ input[type=range]::-ms-thumb {
     text-align: center;
     margin-top: 1.2rem; } }
 
-.brand-logo {
-  margin-left: 1rem; }
+#back-btn {
+  padding: 0 1rem;
+  border-radius: 200px; }
 
 .content .grid-x {
   height: 100%; }
@@ -7127,6 +7128,11 @@ input[type=range]::-ms-thumb {
       -ms-flex-pack: end;
           justify-content: flex-end;
   margin: 0.5rem 0 0; }
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+  .brand-logo {
+    margin-left: 1rem; } }
 
 /* Medium and up */
 @media screen and (min-width: 40em) {

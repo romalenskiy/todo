@@ -1,6 +1,7 @@
 // Navbar
-.brand-logo {
-    margin-left: 1rem;
+#back-btn {
+    padding: 0 1rem;
+    border-radius: 200px;
 }
 
 // Main
@@ -139,6 +140,13 @@
 
 
 // Media queries 
+    /* Large and up */
+@media screen and (min-width: 64em) {
+    .brand-logo {
+        margin-left: 1rem;
+    }
+}
+
     /* Medium and up */
 @media screen and (min-width: 40em) {
     .projects-list {
