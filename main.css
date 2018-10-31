@@ -7112,12 +7112,20 @@ input[type=range]::-ms-thumb {
 #delete-todo-btn {
   margin-left: 0.5rem; }
 
-.project-btn, .todo-btn {
+.project-btn {
+  line-height: 2rem;
+  border-radius: 50%;
+  padding: 0.3rem 0.5rem 0;
+  margin-left: 0.5rem; }
+  .project-btn i {
+    font-size: 1.5rem; }
+
+.todo-btn {
   height: 2rem;
   line-height: 2rem;
   padding: 0 0.7rem;
   margin-left: 0.5rem; }
-  .project-btn i, .todo-btn i {
+  .todo-btn i {
     font-size: 1.5rem; }
 
 .todo-btns {
