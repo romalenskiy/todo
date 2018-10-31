@@ -3,9 +3,19 @@
     margin-left: 1rem;
 }
 
-// Projects
-.projects {
+// Main
+.content {
+    .grid-x {
+        height: 100%;
+    }
+}
+
+// Projects list
+.projects-list {
     position: relative;
+    .project-name {
+        font-weight: bold;
+    }
 }
 
 .project {
@@ -17,8 +27,8 @@
     }
 }
 
-.project-name {
-    font-weight: bold;
+.project-active {
+    background-color: #f5f5f5;
 }
 
 .project-description {
@@ -26,7 +36,7 @@
     margin-bottom: 0;
 }
 
-#new-project {
+#new-project-btn {
     display: flex;
     padding: 1rem;
     color: #757575;
@@ -43,21 +53,105 @@
     right: 1.4rem;
 }
 
-// Todos
-.todos {
-    padding: 0 1rem;
+// Project page
+.project-page {
+    padding: 0 0.5rem;
+    .collapsible {
+        border: none;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+    .collapsible-header {
+        position: relative;
+    }
+    .collapsible-header:after {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.6rem;
+        font-family: 'Material Icons';
+        font-size: 1.6rem;
+        color: #5a5a5a;
+        content: "arrow_drop_down";
+    }
+    .collapsible-body {
+        padding: 1rem;
+    }
 }
+
+.project-page-header {
+    display: flex;
+    align-items: baseline;
+}
+
+.importance {
+    background-image: url(img/importance_empty.svg);
+    background-position: 50%;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-right: 1rem;
+}
+
+.importance.important {
+    background-image: url(img/importance_important.svg)
+}
+
+.important path{
+    fill: #ffeb3b;
+}
+
+.todo.completed {
+    .collapsible-header {
+        background-color: #b9f6ca;
+    }
+    .collapsible-body {
+        background-color: #b9f6ca48;
+    }
+}
+
+.drop-down-indicator {
+    margin-left: auto;
+    color: #5a5a5a;
+}
+
+#new-todo-btn {
+    text-transform: initial;
+}
+
+#delete-todo-btn {
+    margin-left: 0.5rem;
+}
+
+.project-btn, .todo-btn {
+    height: 2rem;
+    line-height: 2rem;
+    padding: 0 0.7rem;
+    margin-left: 0.5rem;
+    i{
+        font-size: 1.5rem;
+    } 
+}
+
+.todo-btns {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0.5rem 0 0;
+}
+
 
 // Media queries 
     /* Medium and up */
 @media screen and (min-width: 40em) {
-    .projects {
+    .projects-list {
         border-right: 1px solid #e0e0e0;
     }
 }
 
     /* Small only */
 @media screen and (max-width: 39.9375em) {
+    .grid-container {
+        padding: 0;
+    }
+
     .header {
         position: fixed;
         left: 0;
