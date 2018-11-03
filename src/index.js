@@ -28,7 +28,7 @@ import displayController from './modules/displayController'
 
     // Initial rendering
     if (Storage.storageAvailable()) {
-        for (let i = 0; i <= localStorage.length; i++) {
+        for (let i = 1; i <= localStorage.getItem('projectId'); i++) {
             let project = localStorage.getItem(`project-${i}`)
             if (project) {
                 displayController.renderProject(JSON.parse(project))

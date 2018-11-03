@@ -33,9 +33,9 @@ const Storage = (() => {
     }
 
     // Save id for next project creation
-    const setProjectId = function(index) {
+    const setProjectId = function() {
         if (storageAvailable()) {
-            let oldProjectId = localStorage.getItem('projectId') || 0
+            let oldProjectId = localStorage.getItem('projectId') || 1
             let newProjectId = ++oldProjectId
             localStorage.setItem('projectId', newProjectId)
         }
@@ -44,7 +44,7 @@ const Storage = (() => {
     // Get project id 
     const getProjectId = function() {
         if (storageAvailable()) {
-            let projectId = JSON.parse(localStorage.getItem('projectId')) || 0
+            let projectId = JSON.parse(localStorage.getItem('projectId')) || 1
             return projectId
         }
     }
