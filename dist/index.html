@@ -13,7 +13,7 @@
 <body>
     <div class="grid-y medium-grid-frame">
         <div class="header cell shrink medium-cell-block-container">
-            <nav class="indigo">
+            <nav>
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo">
                         <i class="material-icons">check_box</i>
@@ -25,72 +25,29 @@
         </div>
         <div class="content cell medium-auto medium-cell-block-container">
             <div class="grid-x">
-                <div class="projects-list cell medium-4 large-3 medium-cell-block-y hide-for-small-only">
-                    <a class="btn-floating btn-large waves-effect waves-light indigo show-for-small-only" id="add-project-button"><i
-                            class="material-icons">add</i></a>
-                    <div class="waves-effect hide-for-small-only" id="new-project-btn">
-                        <i class="material-icons">add</i>
-                        <span>Add new project...</span>
-                    </div>
+                <div class="projects-list cell small-12 medium-4 large-3 medium-cell-block-y">
+                    
+                    <a class="btn-floating btn-large modal-trigger waves-effect waves-light show-for-small-only" id="add-project-btn" href="#new-project-modal"><i class="material-icons">add</i></a>
+                   
+                    <a class="waves-effect modal-trigger hide-for-small-only" id="new-project-btn" href="#new-project-modal">Add new project...</a>
+                    <form id="new-project-modal" class="modal" novalidate>
+                        <div class="modal-content">
+                            <h4>Create new project</h4>
+                            <div class="input-field">
+                                <input id="project_name" type="text" class="validate" minlength="3" autocomplete="off">
+                                <label for="project_name">Project name</label>
+                                <span class="helper-text" data-error="Minimum 3 characters"></span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
+                            <button class="waves-effect btn-flat" id="create-project-btn" type="submit">Create</button>
+                        </div>
+                    </form>
                     <div class="divider hide-for-small-only"></div>
-                    <div class="project project-active">
-                        <h6 class="project-name truncate">Test</h6>
-                        <p class="project-description truncate">Dolore deserunt id consequat reprehenderit nostrud
-                            irure irure
-                            eu pariatur officia occaecat id.</p>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="project">
-                        <h6 class="project-name truncate">Test</h6>
-                        <p class="project-description truncate">Dolore deserunt id consequat reprehenderit nostrud
-                            irure irure
-                            eu pariatur officia occaecat id.</p>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="project">
-                        <h6 class="project-name truncate">Test</h6>
-                        <p class="project-description truncate">Dolore deserunt id consequat reprehenderit nostrud
-                            irure irure
-                            eu pariatur officia occaecat id.</p>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="project">
-                        <h6 class="project-name truncate">Test</h6>
-                        <p class="project-description truncate">Dolore deserunt id consequat reprehenderit nostrud
-                            irure irure
-                            eu pariatur officia occaecat id.</p>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="project">
-                        <h6 class="project-name truncate">Test</h6>
-                        <p class="project-description truncate">Dolore deserunt id consequat reprehenderit nostrud
-                            irure irure
-                            eu pariatur officia occaecat id.</p>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="project">
-                        <h6 class="project-name truncate">Test</h6>
-                        <p class="project-description truncate">Dolore deserunt id consequat reprehenderit nostrud
-                            irure irure
-                            eu pariatur officia occaecat id.</p>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="project">
-                        <h6 class="project-name truncate">Test</h6>
-                        <p class="project-description truncate">Dolore deserunt id consequat reprehenderit nostrud
-                            irure irure
-                            eu pariatur officia occaecat id.</p>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="project">
-                        <h6 class="project-name truncate">Test</h6>
-                        <p class="project-description truncate">Dolore deserunt id consequat reprehenderit nostrud
-                            irure irure
-                            eu pariatur officia occaecat id.</p>
-                    </div>
-                    <div class="divider"></div>
+                    
                 </div>
-                <div class="project-page cell small-12 medium-8 large-9 medium-cell-block-y ">
+                <div class="project-page cell medium-8 large-9 medium-cell-block-y hide-for-small-only">
                     <div class="grid-container">
                         <div class="project-page-header">
                             <h4>Test</h4>
