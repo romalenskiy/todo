@@ -1,17 +1,39 @@
-// Using foundation only for Grid layout
-import './foundation.min.css'
-
 // Materialze core
-import '../node_modules/materialize-css/sass/materialize.scss'
 import '../node_modules/materialize-css/dist/js/materialize.min.js'
 
 // Custom styles
 import './app.scss'
 
-// Expandable accordion initializing
-const collapsible = document.querySelectorAll('.collapsible.expandable');
-let instances = M.Collapsible.init(collapsible, {
-    accordion: false
-});
-
 // Main stuff
+import Storage from './modules/storage'
+import Project from './modules/project'
+import displayController from './modules/displayController'
+
+(() => {
+    // Materialize initializing
+    displayController.initMaterialize()
+
+    // Event listeners
+        // New project form
+    let newProjectForm = document.querySelector('#new-project-modal')
+    newProjectForm.addEventListener('submit', () => {
+        let projectName = document.querySelector('#project_name').value
+        if (projectName.length < 3) return
+        let project = Project.create(projectName)
+        Storage.saveProject(project)
+        Storage.setProjectId()
+        displayController.renderProject(project)
+        displayController.closeNewProjectModal()
+    })
+
+    // Initial rendering
+    if (Storage.storageAvailable()) {
+        for (let i = 0; i <= localStorage.length; i++) {
+            let project = localStorage.getItem(`project-${i}`)
+            if (project) {
+                displayController.renderProject(JSON.parse(project))
+            }
+        }
+    }
+
+})()
