@@ -34,7 +34,21 @@ const displayController = (() => {
         document.querySelector('#project_name').value = ''
     }
 
-    return{initMaterialize, renderProject, closeNewProjectModal}
+    // Mark project as active
+    const makeProjectActive = (project) => {
+        deactivateProjects() // removing .project-active class from all projects
+        project.classList.add('project-active') // adding .project-active class to particular project
+    }
+
+    // Deactivate projects
+    const deactivateProjects = () => {
+        const projects = document.querySelectorAll('.project-wrapper')
+        projects.forEach((project) => {
+            project.classList.remove('project-active')
+        })
+    }
+
+    return{initMaterialize, renderProject, closeNewProjectModal, makeProjectActive}
 })()
 
 export default displayController

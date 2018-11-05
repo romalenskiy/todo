@@ -26,6 +26,15 @@ import displayController from './modules/displayController'
         displayController.closeNewProjectModal()
     })
 
+        // Open project page
+    let projectsList = document.querySelector('.projects-list')
+    projectsList.addEventListener('mousedown', (e) =>{
+        let projectWrapper = e.target.closest('.project-wrapper')
+        if (projectWrapper) {
+            displayController.makeProjectActive(projectWrapper)
+        }
+    })
+
     // Initial rendering
     if (Storage.storageAvailable()) {
         for (let i = 1; i <= localStorage.getItem('projectId'); i++) {
