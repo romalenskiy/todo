@@ -14,7 +14,7 @@ const displayController = (() => {
 
     // Rendering project in the projects-list section
     const renderProject = (project) => {
-        let wrapper = Helper.createElement('section', {['data-project-id']: project.id})
+        let wrapper = Helper.createElement('section', {class: 'project-wrapper', ['data-project-id']: project.id})
         let projectContainer = Helper.createElement('div', {class: 'project'})
         let projectName = Helper.createElement('h6', {class: 'project-name', innerHTML: project.name})
         projectContainer.appendChild(projectName)

@@ -3,7 +3,7 @@ import Helper from './helper'
 
 const Project = (() => {
     // Project factory
-    const create = function(name) {
+    const create = (name) => {
         const id = Storage.getProjectId() || Helper.random(1, 100000)
         return {id, name}
     }

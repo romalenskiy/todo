@@ -2,7 +2,7 @@ const Storage = (() => {
     // Testing for Storage API availability 
     const storageAvailable = function() {
         try {
-            var storage = window['localStorage'],
+            let storage = window['localStorage'],
                 x = '__storage_test__';
             storage.setItem(x, x);
             storage.removeItem(x);
@@ -24,7 +24,7 @@ const Storage = (() => {
         }
     }
     // Saving project to localStorage
-    const saveProject = function(project) {
+    const saveProject = (project) => {
         if (storageAvailable()) {
             let projectJSON = JSON.stringify(project)
             localStorage.setItem(`project-${project.id}`, projectJSON)
@@ -33,7 +33,7 @@ const Storage = (() => {
     }
 
     // Save id for next project creation
-    const setProjectId = function() {
+    const setProjectId = () => {
         if (storageAvailable()) {
             let oldProjectId = localStorage.getItem('projectId') || 1
             let newProjectId = ++oldProjectId
@@ -42,7 +42,7 @@ const Storage = (() => {
     }
 
     // Get project id 
-    const getProjectId = function() {
+    const getProjectId = () => {
         if (storageAvailable()) {
             let projectId = JSON.parse(localStorage.getItem('projectId')) || 1
             return projectId
