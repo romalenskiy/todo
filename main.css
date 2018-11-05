@@ -7031,9 +7031,6 @@ input[type=range]::-ms-thumb {
   .project:hover {
     background-color: #eceff1; }
 
-.project-active {
-  background-color: #eceff1; }
-
 .project-description {
   color: #9e9e9e;
   margin-bottom: 0; }
@@ -7151,7 +7148,9 @@ input[type=range]::-ms-thumb {
 /* Medium and up */
 @media screen and (min-width: 40em) {
   .projects-list {
-    border-right: 1px solid #e0e0e0; } }
+    border-right: 1px solid #e0e0e0; }
+  .project-active {
+    background-color: #eceff1; } }
 
 /* Small only */
 @media screen and (max-width: 39.9375em) {
