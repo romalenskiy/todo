@@ -17,8 +17,8 @@ import displayController from './modules/displayController'
         // New project form
     const newProjectForm = document.querySelector('#new-project-modal')
     newProjectForm.addEventListener('submit', () => {
-        let projectName = document.querySelector('#project_name').value
-        if (projectName.length < 3) return
+        let projectName = document.querySelector('#project_name').value.trim()
+        if (!/.*\S.*/.test(projectName)) return
         let project = Project.create(projectName)
         Storage.saveProject(project)
         Storage.setProjectId()
@@ -41,8 +41,8 @@ import displayController from './modules/displayController'
         // Edit project form
     const editProjectForm = document.querySelector('#edit-project-modal')
     editProjectForm.addEventListener('submit', () => {
-        let newProjectName = document.querySelector('#edit_project_name').value
-        if (newProjectName.length < 3) return
+        let newProjectName = document.querySelector('#edit_project_name').value.trim()
+        if (!/.*\S.*/.test(newProjectName)) return
         let currentProjectId = document.querySelector('.project-active').getAttribute('data-project-id')
         Storage.editProject(currentProjectId, {name: newProjectName})
         displayController.updateProject(newProjectName)
