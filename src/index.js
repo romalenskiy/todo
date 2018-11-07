@@ -16,7 +16,8 @@ import displayController from './modules/displayController'
     // Event listeners
         // New project form
     const newProjectForm = document.querySelector('#new-project-modal')
-    newProjectForm.addEventListener('submit', () => {
+    newProjectForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // prevent from page refresh
         let projectName = document.querySelector('#project_name').value.trim()
         if (!/.*\S.*/.test(projectName)) return
         let project = Project.create(projectName)
@@ -40,7 +41,8 @@ import displayController from './modules/displayController'
 
         // Edit project form
     const editProjectForm = document.querySelector('#edit-project-modal')
-    editProjectForm.addEventListener('submit', () => {
+    editProjectForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // prevent from page refresh
         let newProjectName = document.querySelector('#edit_project_name').value.trim()
         if (!/.*\S.*/.test(newProjectName)) return
         let currentProjectId = document.querySelector('.project-active').getAttribute('data-project-id')

@@ -105,12 +105,13 @@
     right: 1.4rem;
 }
 
-
-.input-field {
-    margin-top: 2rem;
-}
-.modal-content {
-    padding-bottom: 0;
+.modal {
+    .modal-content {
+        padding-bottom: 0;
+    }
+    .input-field {
+        margin: 2rem 0 0;
+    }
 }
 
 // Project page
