@@ -14,6 +14,18 @@ const displayController = (() => {
         }});
     }
 
+    // Initial rendering
+    const initRendering = () => {
+        if (Storage.storageAvailable()) {
+            for (let i = 1; i <= Storage.getProjectId(); i++) {
+                let project = Storage.findProject(i)
+                if (project) {
+                    renderProject(project)
+                }
+            }
+        }
+    }
+
     // Rendering project in the projects-list section
     const renderProject = (project) => {
         let wrapper = Helper.createElement('section', {class: 'project-wrapper', ['data-project-id']: project.id})
@@ -106,7 +118,7 @@ const displayController = (() => {
         placeholderPage.classList.add('hide')
     }
 
-    return{ initMaterialize, renderProject, closeModal, makeProjectActive, showProjectPage, 
+    return{ initMaterialize, initRendering, renderProject, closeModal, makeProjectActive, showProjectPage, 
             hideProjectPage, renderProjectPage, editProject, updateProject, deleteProject }
 })()
 
