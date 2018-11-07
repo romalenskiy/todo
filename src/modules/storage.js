@@ -49,7 +49,34 @@ const Storage = (() => {
         }
     }
 
-    return {storageAvailable, saveProject, setProjectId, getProjectId}
+    // Find project by id
+    const findProject = (projectId) => {
+        if (storageAvailable()) {
+            let project = JSON.parse(localStorage.getItem(`project-${projectId}`))
+            return project
+        }
+    }
+
+    // Edit existing project
+    const editProject = (projectId, attributes) => {
+        if (storageAvailable()) {
+            let project = findProject(projectId)
+            Object.keys(attributes).forEach((attribute) => {
+                project[attribute] = attributes[attribute]
+            })
+            saveProject(project)
+        }
+    }
+
+    // Delete project
+    const deleteProject = (projectId) => {
+        if (storageAvailable()) {
+            localStorage.removeItem(`project-${projectId}`)
+            console.log(localStorage)
+        }
+    }
+
+    return {storageAvailable, saveProject, setProjectId, getProjectId, findProject, editProject, deleteProject}
 })()
 
 export default Storage

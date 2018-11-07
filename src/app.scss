@@ -46,13 +46,21 @@
 @import "../node_modules/materialize-css/sass/components/timepicker";
 
 // Navbar
-#back-btn {
+#back-to-projects-list-btn {
     padding: 0 1rem;
-    border-radius: 200px;
+    border-radius: 50%;
+}
+
+.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 99;
 }
 
 // Main
 .content {
+    margin-top: 4.5rem;
     .grid-x {
         height: 100%;
     }
@@ -97,17 +105,17 @@
     right: 1.4rem;
 }
 
-#new-project-modal {
-    .input-field {
-        margin-top: 2rem;
-    }
-    .modal-content {
-        padding-bottom: 0;
-    }
+
+.input-field {
+    margin-top: 2rem;
+}
+.modal-content {
+    padding-bottom: 0;
 }
 
 // Project page
 .project-page {
+    position: relative;
     padding: 0 0.5rem;
     .collapsible {
         border: none;
@@ -128,6 +136,24 @@
     }
     .collapsible-body {
         padding: 1rem;
+    }
+}
+
+.placeholder-page {
+    align-items: center;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    background-color: white;
+    color: #757575;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    position: absolute;
+    top: 0;
+    right: 0;
+    p {
+        margin: 0.5rem 0;
     }
 }
 
@@ -217,6 +243,10 @@
 
     .project-active {
     background-color: #eceff1;
+
+    .project-page {
+        display: initial;
+    }
 }
 }
 
@@ -226,14 +256,15 @@
         padding: 0;
     }
 
-    .header {
-        position: fixed;
-        left: 0;
-        right: 0;
-        z-index: 99;
-    }
-
     .content {
         margin-top: 4rem;
+    }
+
+    .project-page {
+        display: none;
+    }
+
+    .show {
+        display: initial;
     }
 }

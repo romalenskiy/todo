@@ -1,3 +1,4 @@
+import Storage from './storage'
 import Helper from './helper'
 
 const displayController = (() => {
@@ -9,6 +10,7 @@ const displayController = (() => {
         let modals = document.querySelectorAll('.modal');
         let modalInstances = M.Modal.init(modals, {onOpenEnd: () => {
             document.querySelector('#project_name').focus()
+            document.querySelector('#edit_project_name').focus()
         }});
     }
 
@@ -26,12 +28,12 @@ const displayController = (() => {
         projectsList.appendChild(wrapper)
     }
 
-    // Close New project modal after project creation
-    const closeNewProjectModal = () => {
-        let modal = document.querySelector('#new-project-modal')
+    // Close particular modal and fire the callback
+    const closeModal = (modalSelector, callback = function() {}) => {
+        let modal = document.querySelector(modalSelector)
         let instance = M.Modal.getInstance(modal)
         instance.close()
-        document.querySelector('#project_name').value = ''
+        callback()
     }
 
     // Mark project as active
@@ -48,7 +50,64 @@ const displayController = (() => {
         })
     }
 
-    return{initMaterialize, renderProject, closeNewProjectModal, makeProjectActive}
+    // (for mobile) Show project page and hide projects list
+    const showProjectPage = () => {
+        const projectPage = document.querySelector('.project-page')
+        const projectsList = document.querySelector('.projects-list')
+        projectPage.classList.add('show')
+        projectsList.classList.add('hide-for-small-only')
+        hidePlaceholderPage()
+    }
+
+    // (for mobile) Hide project page and show projects list
+    const hideProjectPage = () => {
+        const projectPage = document.querySelector('.project-page')
+        const projectsList = document.querySelector('.projects-list')
+        projectPage.classList.remove('show')
+        projectsList.classList.remove('hide-for-small-only')
+    }
+
+    // Rendering project page 
+    const renderProjectPage = (projectId) => {
+        let project = Storage.findProject(projectId)
+        let projectName = document.querySelector('.project-page-header h4')
+        projectName.innerHTML = project.name
+    }
+
+    // Insert current project attributes to appropriate tags
+    const editProject = () => {
+        let projectName = document.querySelector('#edit_project_name')
+        projectName.value = document.querySelector('.project-active .project-name').innerHTML
+    }
+
+    // Update project attributes
+    const updateProject = (projectName) => {
+        let projectNameList = document.querySelector('.project-active .project-name')
+        let projectNamePage = document.querySelector('.project-page-header h4')
+        projectNameList.innerHTML = projectNamePage.innerHTML = projectName
+    }
+
+    // Delete project
+    const deleteProject = (project) => {
+        project.remove()
+        hideProjectPage() //for mobile
+        displayPlaceholderPage()
+    }
+
+    // Rendering placeholder (default) page
+    const displayPlaceholderPage = () => {
+        let placeholderPage = document.querySelector('.placeholder-page')
+        placeholderPage.classList.remove('hide')
+    }
+
+    // Hiding placeholder (default) page
+    const hidePlaceholderPage = () => {
+        let placeholderPage = document.querySelector('.placeholder-page')
+        placeholderPage.classList.add('hide')
+    }
+
+    return{ initMaterialize, renderProject, closeModal, makeProjectActive, showProjectPage, 
+            hideProjectPage, renderProjectPage, editProject, updateProject, deleteProject }
 })()
 
 export default displayController
