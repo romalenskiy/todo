@@ -159,7 +159,11 @@
 
 .project-page-header {
     display: flex;
+    flex-flow: row wrap;
     align-items: baseline;
+    h4 {
+        word-break: break-all;
+    }
 }
 
 .importance {
@@ -205,6 +209,7 @@
     border-radius: 50%;
     padding: 0.3rem 0.5rem 0;
     margin-left: 0.5rem;
+    min-width: 2rem;
     i{
         font-size: 1.5rem;
     } 
