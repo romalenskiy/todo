@@ -7061,11 +7061,11 @@ input[type=range]::-ms-thumb {
   bottom: 1.4rem;
   right: 1.4rem; }
 
-.input-field {
-  margin-top: 2rem; }
-
-.modal-content {
+.modal .modal-content {
   padding-bottom: 0; }
+
+.modal .input-field {
+  margin: 2rem 0 0; }
 
 .project-page {
   position: relative;
