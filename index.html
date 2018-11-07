@@ -19,7 +19,7 @@
                         <i class="material-icons">check_box</i>
                         ToDo
                     </a>
-                    <a class="waves-effect waves-light left show-for-small-only" id="back-btn"><i class="material-icons">arrow_back</i></a>
+                    <a class="waves-effect waves-light left show-for-small-only" id="back-to-projects-list-btn"><i class="material-icons">arrow_back</i></a>
                 </div>
             </nav>
         </div>
@@ -30,29 +30,15 @@
                     <a class="btn-floating btn-large modal-trigger waves-effect waves-light show-for-small-only" id="add-project-btn" href="#new-project-modal"><i class="material-icons">add</i></a>
                    
                     <a class="waves-effect modal-trigger hide-for-small-only" id="new-project-btn" href="#new-project-modal">Add new project...</a>
-                    <form id="new-project-modal" class="modal" novalidate>
-                        <div class="modal-content">
-                            <h4>Create new project</h4>
-                            <div class="input-field">
-                                <input id="project_name" type="text" class="validate" minlength="3" autocomplete="off">
-                                <label for="project_name">Project name</label>
-                                <span class="helper-text" data-error="Minimum 3 characters"></span>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
-                            <button class="waves-effect btn-flat" id="create-project-btn" type="submit">Create</button>
-                        </div>
-                    </form>
                     <div class="divider hide-for-small-only"></div>
                     
                 </div>
-                <div class="project-page cell medium-8 large-9 medium-cell-block-y hide-for-small-only">
+                <div class="project-page cell medium-8 large-9 medium-cell-block-y">
                     <div class="grid-container">
                         <div class="project-page-header">
-                            <h4>Test</h4>
-                            <a class="waves-effect btn-flat project-btn" id="edit-project-btn"><i class="material-icons">edit</i></a>
-                            <a class="waves-effect btn-flat project-btn" id="delete-project-btn"><i class="material-icons">delete_outline</i></a>
+                            <h4></h4>
+                            <a class="waves-effect btn-flat project-btn modal-trigger" id="edit-project-btn" href="#edit-project-modal"><i class="material-icons">edit</i></a>
+                            <a class="waves-effect btn-flat project-btn modal-trigger" id="delete-project-btn" href="#delete-project-modal"><i class="material-icons">delete_outline</i></a>
                         </div>
                         <div class="project-page-body">
                             <a class="waves-effect btn-flat" id="new-todo-btn"><i class="material-icons left">add</i>Add
@@ -126,10 +112,57 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="placeholder-page">
+                        <p>Please, select a project or</p>
+                        <a class="modal-trigger" href="#new-project-modal">create a new one!</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modals -->
+    <form id="new-project-modal" class="modal" novalidate>
+        <div class="modal-content">
+            <h4>Create new project</h4>
+            <div class="input-field">
+                <input id="project_name" type="text" class="validate" minlength="3" autocomplete="off">
+                <label for="project_name">Project name</label>
+                <span class="helper-text" data-error="Minimum 3 characters"></span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
+            <button class="waves-effect btn-flat" id="create-project-btn" type="submit">Create</button>
+        </div>
+    </form>
+
+    <form id="edit-project-modal" class="modal" novalidate>
+        <div class="modal-content">
+            <h4>Edit project</h4>
+            <div class="input-field">
+                <input id="edit_project_name" type="text" class="validate" minlength="3" autocomplete="off">
+                <label for="edit_project_name">Project name</label>
+                <span class="helper-text" data-error="Minimum 3 characters"></span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
+            <button class="waves-effect btn-flat" id="update-project-btn" type="submit">Update</button>
+        </div>
+    </form>
+
+    <form id="delete-project-modal" class="modal" novalidate>
+        <div class="modal-content">
+            <h4>Are you sure?</h4>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
+            <button class="waves-effect btn-flat" id="delete-project-btn" type="submit">Yes</button>
+        </div>
+    </form>
+
+    <!-- Script -->
     <script src="main.js"></script>
 </body>
 

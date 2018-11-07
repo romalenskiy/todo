@@ -7010,12 +7010,20 @@ input[type=range]::-ms-thumb {
     text-align: center;
     margin-top: 1.2rem; } }
 
-#back-btn {
+#back-to-projects-list-btn {
   padding: 0 1rem;
-  border-radius: 200px; }
+  border-radius: 50%; }
 
-.content .grid-x {
-  height: 100%; }
+.header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 99; }
+
+.content {
+  margin-top: 4.5rem; }
+  .content .grid-x {
+    height: 100%; }
 
 .projects-list {
   position: relative; }
@@ -7053,13 +7061,14 @@ input[type=range]::-ms-thumb {
   bottom: 1.4rem;
   right: 1.4rem; }
 
-#new-project-modal .input-field {
+.input-field {
   margin-top: 2rem; }
 
-#new-project-modal .modal-content {
+.modal-content {
   padding-bottom: 0; }
 
 .project-page {
+  position: relative;
   padding: 0 0.5rem; }
   .project-page .collapsible {
     border: none;
@@ -7077,6 +7086,31 @@ input[type=range]::-ms-thumb {
     content: "arrow_drop_down"; }
   .project-page .collapsible-body {
     padding: 1rem; }
+
+.placeholder-page {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: white;
+  color: #757575;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  right: 0; }
+  .placeholder-page p {
+    margin: 0.5rem 0; }
 
 .project-page-header {
   display: -webkit-box;
@@ -7150,17 +7184,18 @@ input[type=range]::-ms-thumb {
   .projects-list {
     border-right: 1px solid #e0e0e0; }
   .project-active {
-    background-color: #eceff1; } }
+    background-color: #eceff1; }
+    .project-active .project-page {
+      display: initial; } }
 
 /* Small only */
 @media screen and (max-width: 39.9375em) {
   .grid-container {
     padding: 0; }
-  .header {
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 99; }
   .content {
-    margin-top: 4rem; } }
+    margin-top: 4rem; }
+  .project-page {
+    display: none; }
+  .show {
+    display: initial; } }
 
