@@ -126,9 +126,9 @@
         <div class="modal-content">
             <h4>Create new project</h4>
             <div class="input-field">
-                <input id="project_name" type="text" class="validate" minlength="3" autocomplete="off">
+                <input id="project_name" type="text" class="validate" pattern=".*\S.*" autocomplete="off">
                 <label for="project_name">Project name</label>
-                <span class="helper-text" data-error="Minimum 3 characters"></span>
+                <span class="helper-text" data-error="Name can't be blank!"></span>
             </div>
         </div>
         <div class="modal-footer">
@@ -141,9 +141,9 @@
         <div class="modal-content">
             <h4>Edit project</h4>
             <div class="input-field">
-                <input id="edit_project_name" type="text" class="validate" minlength="3" autocomplete="off">
+                <input id="edit_project_name" type="text" class="validate" pattern=".*\S.*" autocomplete="off">
                 <label for="edit_project_name">Project name</label>
-                <span class="helper-text" data-error="Minimum 3 characters"></span>
+                <span class="helper-text" data-error="Name can't be blank!"></span>
             </div>
         </div>
         <div class="modal-footer">
