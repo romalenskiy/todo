@@ -222,9 +222,11 @@
 
 .todo-body {
     white-space: pre-line;
+    word-break: break-all;
 }
 
 .todo-header {
+    word-break: break-all;
     margin-right: 1rem;
 }
 
