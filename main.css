@@ -7168,9 +7168,11 @@ input[type=range]::-ms-thumb {
     font-size: 1.5rem; }
 
 .todo-body {
-  white-space: pre-line; }
+  white-space: pre-line;
+  word-break: break-all; }
 
 .todo-header {
+  word-break: break-all;
   margin-right: 1rem; }
 
 .todo-btn {
