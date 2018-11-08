@@ -85,6 +85,7 @@ const eventController = (() => {
             displayController.closeModal('#new-todo-modal', () => {
                 document.querySelector('#todo_header').value = ''
                 document.querySelector('#todo_body').value = ''
+                M.textareaAutoResize(document.querySelector('#todo_body')) // triggering autoresize for textarea
                 document.querySelector('#todo_importance').checked = false
             })
             // Render todo right after creating
