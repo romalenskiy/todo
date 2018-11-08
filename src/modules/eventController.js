@@ -21,7 +21,7 @@ const eventController = (() => {
             let projectWrapper = document.querySelector(`.project-wrapper[data-project-id="${project.id}"`)
             displayController.makeProjectActive(projectWrapper)
             displayController.showProjectPage() // (for mobile)
-            displayController.renderProjectPage(project.id)
+            displayController.renderProjectPage(project.name)
 
         })
 

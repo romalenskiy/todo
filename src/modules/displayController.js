@@ -80,10 +80,9 @@ const displayController = (() => {
     }
 
     // Rendering project page 
-    const renderProjectPage = (projectId) => {
-        let project = Storage.findProject(projectId)
+    const renderProjectPage = (projectName) => {
         let projectName = document.querySelector('.project-page-header h4')
-        projectName.innerHTML = project.name
+        projectName.innerHTML = projectName
     }
 
     // Insert current project attributes to appropriate tags
