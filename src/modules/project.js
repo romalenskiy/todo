@@ -4,11 +4,18 @@ import Helper from './helper'
 const Project = (() => {
     // Project factory
     const create = (name) => {
-        const id = Storage.getProjectId() || Helper.random(1, 100000)
-        return {id, name}
+        const id = Storage.getId('project') || Helper.random(1, 100000)
+        const todos = {}
+        return {id, name, todos}
     }
 
-    return{create}
+    const addTodo = (projectId, todo) => {
+        let project = Storage.findProject(projectId)
+        Object.assign(project.todos, {[`todo-${Storage.getId('todo')}`]:todo})
+        return project
+    }
+
+    return{create, addTodo}
 })()
 
 export default Project

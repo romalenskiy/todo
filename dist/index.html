@@ -42,74 +42,8 @@
                             <a class="waves-effect btn-flat project-btn modal-trigger" id="delete-project-btn" href="#delete-project-modal"><i class="material-icons">delete_outline</i></a>
                         </div>
                         <div class="project-page-body">
-                            <a class="waves-effect btn-flat" id="new-todo-btn"><i class="material-icons left">add</i>Add
-                                new todo</a>
-                            <ul class="collapsible expandable">
-                                <li class="todo">
-                                    <div class="collapsible-header">
-                                        <label>
-                                            <input type="checkbox" />
-                                            <span></span>
-                                        </label>
-                                        <div class="importance"></div>
-                                        <span>Uncompleted Unimportant</span>
-                                    </div>
-                                    <div class="collapsible-body">
-                                        <span>Incididunt magna ipsum sint ut dolore consequat officia qui dolore irure
-                                            cupidatat. Nisi Lorem nisi exercitation sint cillum dolor voluptate.
-                                            Eiusmod
-                                            elit laborum labore et tempor dolor ipsum Lorem eu sint.</span>
-                                        <div class="todo-btns">
-                                            <a class="waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn" id="edit-todo-btn">edit</a>
-                                            <a class="waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn" id="delete-todo-btn">delete</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="todo">
-                                    <div class="collapsible-header">
-                                        <label>
-                                            <input type="checkbox" />
-                                            <span></span>
-                                        </label>
-                                        <div class="importance important"></div>
-                                        <span>Uncompleted Important</span>
-                                    </div>
-                                    <div class="collapsible-body">
-                                        <span>Laboris laboris non tempor aliqua nostrud veniam eiusmod officia. Cillum
-                                            nisi
-                                            eiusmod dolore magna incididunt irure consectetur esse. Qui aute et fugiat
-                                            adipisicing velit ex dolor ipsum. Nulla anim quis qui ea enim deserunt id.</span>
-                                        <div class="todo-btns">
-                                            <a class="waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn" id="edit-todo-btn">edit</a>
-                                            <a class="waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn" id="delete-todo-btn">delete</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="todo completed">
-                                    <div class="collapsible-header">
-                                        <label>
-                                            <input type="checkbox" checked="checked" />
-                                            <span></span>
-                                        </label>
-                                        <div class="importance important"></div>
-                                        <span>Completed Important</span>
-                                    </div>
-                                    <div class="collapsible-body">
-                                        <span>Incididunt deserunt dolor ea Lorem veniam amet non eiusmod. Elit ut
-                                            tempor
-                                            duis non fugiat occaecat officia adipisicing tempor nostrud deserunt. Id
-                                            adipisicing enim in proident eiusmod deserunt do laborum ad ea culpa. Ad
-                                            nostrud laborum est adipisicing adipisicing aliquip occaecat nisi excepteur
-                                            nisi esse Lorem adipisicing excepteur. Voluptate quis cillum commodo duis
-                                            ullamco deserunt est quis nisi laborum. Aliquip exercitation anim veniam do
-                                            quis aliqua dolore esse quis excepteur adipisicing ipsum nulla nostrud. Est
-                                            velit et ea cupidatat amet non.</span>
-                                        <div class="todo-btns">
-                                            <a class="waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn" id="edit-todo-btn">edit</a>
-                                            <a class="waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn" id="delete-todo-btn">delete</a>
-                                        </div>
-                                    </div>
-                                </li>
+                            <a class="waves-effect btn-flat modal-trigger" id="new-todo-btn" href="#new-todo-modal"><i class="material-icons left">add</i>Add new todo</a>
+                            <ul class="collapsible expandable todo-container">
                             </ul>
                         </div>
                     </div>
@@ -160,6 +94,32 @@
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
             <button class="waves-effect btn-flat" id="delete-project-btn" type="submit">Yes</button>
+        </div>
+    </form>
+
+    <form id="new-todo-modal" class="modal" novalidate>
+        <div class="modal-content">
+            <h4>Create new todo</h4>
+            <div class="input-field">
+                <input id="todo_header" type="text" class="validate" pattern=".*\S.*" autocomplete="off">
+                <label for="todo_header">Todo header</label>
+                <span class="helper-text" data-error="Header can't be blank!"></span>
+            </div>
+            <div class="input-field">
+                <textarea id="todo_body" class="materialize-textarea validate"></textarea>
+                <label for="todo_body">Todo body</label>
+            </div>
+            <div class="switch">
+                <label>
+                  Important?
+                  <input id="todo_importance" type="checkbox">
+                  <span class="lever"></span>
+                </label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
+            <button class="waves-effect btn-flat" id="create-todo-btn" type="submit">Create</button>
         </div>
     </form>
 

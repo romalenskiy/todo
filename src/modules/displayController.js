@@ -11,13 +11,14 @@ const displayController = (() => {
         let modalInstances = M.Modal.init(modals, {onOpenEnd: () => {
             document.querySelector('#project_name').focus()
             document.querySelector('#edit_project_name').focus()
+            document.querySelector('#todo_header').focus()
         }});
     }
 
     // Initial rendering
     const initRendering = () => {
         if (Storage.storageAvailable()) {
-            for (let i = 1; i <= Storage.getProjectId(); i++) {
+            for (let i = 1; i <= Storage.getId('project'); i++) {
                 let project = Storage.findProject(i)
                 if (project) {
                     renderProject(project)
@@ -28,13 +29,13 @@ const displayController = (() => {
 
     // Rendering project in the projects-list section
     const renderProject = (project) => {
-        let wrapper = Helper.createElement('section', {class: 'project-wrapper', ['data-project-id']: project.id})
         let projectContainer = Helper.createElement('div', {class: 'project'})
         let projectName = Helper.createElement('h6', {class: 'project-name truncate', innerHTML: project.name})
         projectContainer.appendChild(projectName)
         let divider = Helper.createElement('div', {class: 'divider'})
-        wrapper.appendChild(projectContainer)
-        wrapper.appendChild(divider)
+
+        let wrapper = Helper.createElement('section', {class: 'project-wrapper', ['data-project-id']: project.id})
+        wrapper = Helper.appendChildren(wrapper, projectContainer, divider)
 
         let projectsList = document.querySelector('.projects-list')
         projectsList.appendChild(wrapper)
@@ -80,9 +81,17 @@ const displayController = (() => {
     }
 
     // Rendering project page 
-    const renderProjectPage = (projectName) => {
-        let projectName = document.querySelector('.project-page-header h4')
-        projectName.innerHTML = projectName
+    const renderProjectPage = (project) => {
+        let projectNameTag = document.querySelector('.project-page-header h4')
+        projectNameTag.innerHTML = project.name
+        // Clear todo list
+        let todoContainer = document.querySelector('.todo-container')
+        Helper.deleteChildren(todoContainer)
+        // Render todo list
+        Object.keys(project.todos).forEach((todo) => {
+            renderTodo(project.todos[todo])
+        })
+        
     }
 
     // Insert current project attributes to appropriate tags
@@ -117,8 +126,36 @@ const displayController = (() => {
         placeholderPage.classList.add('hide')
     }
 
+    // Rendering todo
+    const renderTodo = (todo) => {
+        let headerContainer = Helper.createElement('div', {class: 'collapsible-header'})
+        let label = Helper.createElement('label')
+        let checkbox = Helper.createElement('input', {type: 'checkbox'})
+        if (todo.isCompleted) checkbox.setAttribute('checked', 'checked')
+        let emptySpan = Helper.createElement('span')
+        let importance = Helper.createElement('div', {class: 'importance'})
+        if (todo.isImportant) importance.classList.add('important')
+        let header = Helper.createElement('div', {class: 'todo-header', innerHTML: todo.header})
+        label = Helper.appendChildren(label, checkbox, emptySpan)
+        headerContainer = Helper.appendChildren(headerContainer, label, importance, header)
+
+        let bodyContainer = Helper.createElement('div', {class: 'collapsible-body'})
+        let body = Helper.createElement('div', {class: 'todo-body', innerHTML: todo.body})
+        let todoBtns = Helper.createElement('div', {class: 'todo-btns'})
+        let editBtn = Helper.createElement('a', {class: 'waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn', id: 'edit-todo-btn', innerHTML: 'edit'})
+        let deleteBtn = Helper.createElement('a', {class: 'waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn', id: 'delete-todo-btn', innerHTML: 'delete'})
+        todoBtns = Helper.appendChildren(todoBtns, editBtn, deleteBtn)  
+        bodyContainer = Helper.appendChildren(bodyContainer, body, todoBtns) 
+        
+        let wrapper = Helper.createElement('li', {class: 'todo', ['data-todo-id']: todo.id})
+        wrapper = Helper.appendChildren(wrapper, headerContainer, bodyContainer)
+
+        let todoContainer = document.querySelector('.todo-container')
+        todoContainer.appendChild(wrapper)
+    }
+
     return{ initMaterialize, initRendering, renderProject, closeModal, makeProjectActive, showProjectPage, 
-            hideProjectPage, renderProjectPage, editProject, updateProject, deleteProject }
+            hideProjectPage, renderProjectPage, editProject, updateProject, deleteProject, renderTodo}
 })()
 
 export default displayController

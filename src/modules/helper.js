@@ -23,12 +23,27 @@ const Helper = (() => {
         })
     }
 
+    // Appends multiple children to parent in order
+    function appendChildren(parent) {
+        for (let i = 1; i < arguments.length; i++) {
+            parent.appendChild(arguments[i])
+        }
+        return parent
+    }
+
+    // Delete all children from parent
+    const deleteChildren = (parent) => {
+        while(parent.firstChild) {
+            parent.removeChild(parent.firstChild)
+        }
+    }
+
     // Generate random integer between min (included) and max (excluded)
     const random = (min, max) => {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    return {createElement, setAttributes, random}
+    return {createElement, setAttributes, appendChildren, deleteChildren, random}
 })()
 
 export default Helper

@@ -17,3 +17,17 @@ displayController.initRendering()
 
 // Event listeners
 eventController.init()
+
+// import Project from './modules/project'
+// import Todo from './modules/todo'
+// import Storage from './modules/storage'
+// import Helper from './modules/helper'
+
+// let project = Project.create('Test')
+// console.log(project)
+// Storage.saveProject(project)
+// let todo = Todo.create()
+// console.log(todo)
+// let updatedProject = Project.addTodo(project.id, todo)
+// console.log(updatedProject)
+// Storage.saveProject(updatedProject)

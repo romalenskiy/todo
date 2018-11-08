@@ -1,5 +1,6 @@
 import Storage from './storage'
 import Project from './project'
+import Todo from './todo'
 import displayController from './displayController'
 
 const eventController = (() => {
@@ -12,7 +13,7 @@ const eventController = (() => {
             if (!/.*\S.*/.test(projectName)) return
             let project = Project.create(projectName)
             Storage.saveProject(project)
-            Storage.setProjectId()
+            Storage.setId('project')
             displayController.renderProject(project)
             displayController.closeModal('#new-project-modal', () => {
                 document.querySelector('#project_name').value = ''
@@ -21,7 +22,7 @@ const eventController = (() => {
             let projectWrapper = document.querySelector(`.project-wrapper[data-project-id="${project.id}"`)
             displayController.makeProjectActive(projectWrapper)
             displayController.showProjectPage() // (for mobile)
-            displayController.renderProjectPage(project.name)
+            displayController.renderProjectPage(project)
 
         })
 
@@ -64,8 +65,30 @@ const eventController = (() => {
             if (projectWrapper) {
                 displayController.makeProjectActive(projectWrapper)
                 displayController.showProjectPage() // (for mobile)
-                displayController.renderProjectPage(projectWrapper.getAttribute('data-project-id'))
+                displayController.renderProjectPage(Storage.findProject(projectWrapper.getAttribute('data-project-id')))
             }
+        })
+
+        // New todo form
+        const newTodoForm = document.querySelector('#new-todo-modal')
+        newTodoForm.addEventListener('submit', (e) => {
+            e.preventDefault() // prevent from page refresh
+            let todoHeader = document.querySelector('#todo_header').value.trim()
+            if (!/.*\S.*/.test(todoHeader)) return
+            let todoBody = document.querySelector('#todo_body').value.trim()
+            let todoImportance = document.querySelector('#todo_importance').checked
+            let todo = Todo.create(todoHeader, todoBody, todoImportance)
+            let currentProjectId = document.querySelector('.project-active').getAttribute('data-project-id')
+            let updatedProject = Project.addTodo(currentProjectId, todo)
+            Storage.saveProject(updatedProject)
+            Storage.setId('todo')
+            displayController.closeModal('#new-todo-modal', () => {
+                document.querySelector('#todo_header').value = ''
+                document.querySelector('#todo_body').value = ''
+                document.querySelector('#todo_importance').checked = false
+            })
+            // Render todo right after creating
+            displayController.renderTodo(todo)
         })
 
         // (for mobile) Back to projects list

@@ -32,20 +32,20 @@ const Storage = (() => {
         }
     }
 
-    // Save id for next project creation
-    const setProjectId = () => {
+    // Save id for next entity creation
+    const setId = (entity) => {
         if (storageAvailable()) {
-            let oldProjectId = localStorage.getItem('projectId') || 1
-            let newProjectId = ++oldProjectId
-            localStorage.setItem('projectId', newProjectId)
+            let oldId = localStorage.getItem(entity + 'Id') || 1
+            let newId = ++oldId
+            localStorage.setItem(entity + 'Id', newId)
         }
     }
 
-    // Get project id 
-    const getProjectId = () => {
+    // Get entity id 
+    const getId = (entity) => {
         if (storageAvailable()) {
-            let projectId = JSON.parse(localStorage.getItem('projectId')) || 1
-            return projectId
+            let id = JSON.parse(localStorage.getItem(entity + 'Id')) || 1
+            return id
         }
     }
 
@@ -76,7 +76,7 @@ const Storage = (() => {
         }
     }
 
-    return {storageAvailable, saveProject, setProjectId, getProjectId, findProject, editProject, deleteProject}
+    return {storageAvailable, saveProject, setId, getId, findProject, editProject, deleteProject}
 })()
 
 export default Storage
