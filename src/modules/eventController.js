@@ -92,9 +92,10 @@ const eventController = (() => {
             displayController.renderTodo(todo)
         })
 
-        // Toggle todo completeness
+        // Todo buttons
         const todoList = document.querySelector('.todo-container')
         todoList.addEventListener('click', (e) => {
+            // Toggle todo completeness
             if (e.target.classList.contains('todo-checkbox')) {
                 let currentProjectId = document.querySelector('.project-active').getAttribute('data-project-id')
                 let todo = e.target.closest('.todo')
@@ -102,7 +103,29 @@ const eventController = (() => {
                 let updatedProject = Project.toggleTodoCompleteness(currentProjectId, todoId)
                 Storage.saveProject(updatedProject)
                 displayController.toggleTodoCompleteness(todo)
+
+            // Edit todo button
+            } else if (e.target.classList.contains('edit-todo-btn')) {
+                displayController.editTodo(e.target.closest('.todo'))
+                M.textareaAutoResize(document.querySelector('#edit_todo_body')) // triggering autoresize for textarea                
             }
+        })
+
+        // Edit todo form
+        const editTodoForm = document.querySelector('#edit-todo-modal')
+        editTodoForm.addEventListener('submit', (e) => {
+            e.preventDefault() // prevent from page refresh
+            let header = document.querySelector('#edit_todo_header').value.trim()
+            if (!/.*\S.*/.test(header)) return
+            let body = document.querySelector('#edit_todo_body').value.trim()
+            let isImportant = document.querySelector('#edit_todo_importance').checked
+            let attributes = {header, body, isImportant}
+            let currentProjectId = document.querySelector('.project-active').getAttribute('data-project-id')
+            let currentTodoId = document.querySelector('#edit-todo-modal').getAttribute('data-todo-id')
+            let updatedProject = Project.editTodo(currentProjectId, currentTodoId, attributes)
+            Storage.saveProject(updatedProject)
+            displayController.updateTodo(currentTodoId, attributes)
+            displayController.closeModal('#edit-todo-modal')
         })
 
         // (for mobile) Back to projects list

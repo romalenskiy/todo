@@ -12,6 +12,8 @@ const displayController = (() => {
             document.querySelector('#project_name').focus()
             document.querySelector('#edit_project_name').focus()
             document.querySelector('#todo_header').focus()
+            document.querySelector('#edit_todo_body').focus()
+            document.querySelector('#edit_todo_header').focus()
         }});
     }
 
@@ -94,7 +96,7 @@ const displayController = (() => {
         
     }
 
-    // Insert current project attributes to appropriate tags
+    // Insert current project attributes to appropriate fields
     const editProject = () => {
         let projectName = document.querySelector('#edit_project_name')
         projectName.value = document.querySelector('.project-active .project-name').innerHTML
@@ -142,8 +144,8 @@ const displayController = (() => {
         let bodyContainer = Helper.createElement('div', {class: 'collapsible-body'})
         let body = Helper.createElement('div', {class: 'todo-body', innerHTML: todo.body})
         let todoBtns = Helper.createElement('div', {class: 'todo-btns'})
-        let editBtn = Helper.createElement('a', {class: 'waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn', id: 'edit-todo-btn', innerHTML: 'edit'})
-        let deleteBtn = Helper.createElement('a', {class: 'waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn', id: 'delete-todo-btn', innerHTML: 'delete'})
+        let editBtn = Helper.createElement('a', {class: 'waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn modal-trigger edit-todo-btn', href: '#edit-todo-modal', innerHTML: 'edit'})
+        let deleteBtn = Helper.createElement('a', {class: 'waves-effect btn-flat btn-small blue-grey lighten-5 todo-btn modal-trigger delete-todo-btn', href: '#delete-todo-modal', innerHTML: 'delete'})
         todoBtns = Helper.appendChildren(todoBtns, editBtn, deleteBtn)  
         bodyContainer = Helper.appendChildren(bodyContainer, body, todoBtns) 
         
@@ -160,8 +162,30 @@ const displayController = (() => {
         todo.classList.toggle('completed')
     }
 
+    // Insert current todo attributes to appropriate fields
+    const editTodo = (todo) => {
+        document.querySelector('#edit_todo_header').value = todo.querySelector('.todo-header').innerHTML
+        document.querySelector('#edit_todo_body').value = todo.querySelector('.todo-body').innerHTML
+        document.querySelector('#edit_todo_importance').checked = todo.querySelector('.importance').classList.contains('important')
+
+        document.querySelector('#edit-todo-modal').setAttribute('data-todo-id', todo.getAttribute('data-todo-id'))
+    }
+
+    // Update todo attributes
+    const updateTodo = (todoId, attributes) => {
+        let todo = document.querySelector(`.todo[data-todo-id="${todoId}"]`)
+        todo.querySelector('.todo-header').innerHTML = attributes.header
+        todo.querySelector('.todo-body').innerHTML = attributes.body
+        if (attributes.isImportant) {
+            todo.querySelector('.importance').classList.add('important')
+        } else {
+            todo.querySelector('.importance').classList.remove('important')
+        }
+    }
+
     return{ initMaterialize, initRendering, renderProject, closeModal, makeProjectActive, showProjectPage, 
-            hideProjectPage, renderProjectPage, editProject, updateProject, deleteProject, renderTodo, toggleTodoCompleteness}
+            hideProjectPage, renderProjectPage, editProject, updateProject, deleteProject, renderTodo, toggleTodoCompleteness,
+            editTodo, updateTodo }
 })()
 
 export default displayController

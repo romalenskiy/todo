@@ -57,6 +57,7 @@
     </div>
 
     <!-- Modals -->
+        <!-- New project -->
     <form id="new-project-modal" class="modal" novalidate>
         <div class="modal-content">
             <h4>Create new project</h4>
@@ -72,6 +73,7 @@
         </div>
     </form>
 
+        <!-- Edit project -->
     <form id="edit-project-modal" class="modal" novalidate>
         <div class="modal-content">
             <h4>Edit project</h4>
@@ -87,6 +89,7 @@
         </div>
     </form>
 
+        <!-- Delete project -->
     <form id="delete-project-modal" class="modal" novalidate>
         <div class="modal-content">
             <h4>Are you sure?</h4>
@@ -97,6 +100,7 @@
         </div>
     </form>
 
+        <!-- New todo -->
     <form id="new-todo-modal" class="modal" novalidate>
         <div class="modal-content">
             <h4>Create new todo</h4>
@@ -120,6 +124,33 @@
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
             <button class="waves-effect btn-flat" id="create-todo-btn" type="submit">Create</button>
+        </div>
+    </form>
+
+        <!-- Edit todo -->
+    <form id="edit-todo-modal" class="modal" novalidate>
+        <div class="modal-content">
+            <h4>Edit todo</h4>
+            <div class="input-field">
+                <input id="edit_todo_header" type="text" class="validate" pattern=".*\S.*" autocomplete="off">
+                <label for="edit_todo_header">Todo header</label>
+                <span class="helper-text" data-error="Header can't be blank!"></span>
+            </div>
+            <div class="input-field">
+                <textarea id="edit_todo_body" class="materialize-textarea validate"></textarea>
+                <label for="edit_todo_body">Todo body</label>
+            </div>
+            <div class="switch">
+                <label>
+                  Important?
+                  <input id="edit_todo_importance" type="checkbox">
+                  <span class="lever"></span>
+                </label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect btn-flat">Cancel</a>
+            <button class="waves-effect btn-flat" id="update-todo-btn" type="submit">Update</button>
         </div>
     </form>
 
