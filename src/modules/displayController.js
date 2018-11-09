@@ -130,7 +130,7 @@ const displayController = (() => {
     const renderTodo = (todo) => {
         let headerContainer = Helper.createElement('div', {class: 'collapsible-header'})
         let label = Helper.createElement('label')
-        let checkbox = Helper.createElement('input', {type: 'checkbox'})
+        let checkbox = Helper.createElement('input', {type: 'checkbox', class: 'todo-checkbox'})
         if (todo.isCompleted) checkbox.setAttribute('checked', 'checked')
         let emptySpan = Helper.createElement('span')
         let importance = Helper.createElement('div', {class: 'importance'})
@@ -148,14 +148,20 @@ const displayController = (() => {
         bodyContainer = Helper.appendChildren(bodyContainer, body, todoBtns) 
         
         let wrapper = Helper.createElement('li', {class: 'todo', ['data-todo-id']: todo.id})
+        if (todo.isCompleted) wrapper.classList.add('completed')
         wrapper = Helper.appendChildren(wrapper, headerContainer, bodyContainer)
 
         let todoContainer = document.querySelector('.todo-container')
         todoContainer.appendChild(wrapper)
     }
 
+    // Toggling todo completeness
+    const toggleTodoCompleteness = (todo) => {
+        todo.classList.toggle('completed')
+    }
+
     return{ initMaterialize, initRendering, renderProject, closeModal, makeProjectActive, showProjectPage, 
-            hideProjectPage, renderProjectPage, editProject, updateProject, deleteProject, renderTodo}
+            hideProjectPage, renderProjectPage, editProject, updateProject, deleteProject, renderTodo, toggleTodoCompleteness}
 })()
 
 export default displayController

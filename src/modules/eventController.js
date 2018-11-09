@@ -92,6 +92,19 @@ const eventController = (() => {
             displayController.renderTodo(todo)
         })
 
+        // Toggle todo completeness
+        const todoList = document.querySelector('.todo-container')
+        todoList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('todo-checkbox')) {
+                let currentProjectId = document.querySelector('.project-active').getAttribute('data-project-id')
+                let todo = e.target.closest('.todo')
+                let todoId = todo.getAttribute('data-todo-id')
+                let updatedProject = Project.toggleTodoCompleteness(currentProjectId, todoId)
+                Storage.saveProject(updatedProject)
+                displayController.toggleTodoCompleteness(todo)
+            }
+        })
+
         // (for mobile) Back to projects list
         const backToProjectsListBtn = document.querySelector('#back-to-projects-list-btn')
         backToProjectsListBtn.addEventListener('click', () => {

@@ -15,7 +15,13 @@ const Project = (() => {
         return project
     }
 
-    return{create, addTodo}
+    const toggleTodoCompleteness = (projectId, todoId) => {
+        let project = Storage.findProject(projectId)
+        project.todos[`todo-${todoId}`].isCompleted = !project.todos[`todo-${todoId}`].isCompleted
+        return project
+    }
+
+    return{create, addTodo, toggleTodoCompleteness}
 })()
 
 export default Project
