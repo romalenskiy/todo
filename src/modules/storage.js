@@ -33,10 +33,10 @@ const Storage = (() => {
     }
 
     // Save id for next entity creation
-    const setId = (entity) => {
+    const setId = (entity, id = null) => {
         if (storageAvailable()) {
             let oldId = localStorage.getItem(entity + 'Id') || 1
-            let newId = ++oldId
+            let newId = id || ++oldId
             localStorage.setItem(entity + 'Id', newId)
         }
     }
