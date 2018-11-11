@@ -16,11 +16,19 @@ const Project = (() => {
         return project
     }
 
+    // Editing todo in existing project 
     const editTodo = (projectId, todoId, attributes) => {
         let project = Storage.findProject(projectId)
         Object.keys(attributes).forEach((attribute) => {
             project.todos[`todo-${todoId}`][attribute] = attributes[attribute]
         })
+        return project
+    }
+
+    // Deleting todo in existing project
+    const deleteTodo = (projectId, todoId) => {
+        let project = Storage.findProject(projectId)
+        delete project.todos[`todo-${todoId}`]
         return project
     }
 
@@ -31,7 +39,7 @@ const Project = (() => {
         return project
     }
 
-    return{create, addTodo, editTodo, toggleTodoCompleteness}
+    return{create, addTodo, editTodo, deleteTodo, toggleTodoCompleteness}
 })()
 
 export default Project

@@ -54,7 +54,7 @@ const eventController = (() => {
             let currentProject = document.querySelector('.project-active')
             let currentProjectId = currentProject.getAttribute('data-project-id')
             Storage.deleteProject(currentProjectId)
-            displayController.deleteProject(currentProject)
+            displayController.destroyProject(currentProject)
             displayController.closeModal('#delete-project-modal')
         }
 
@@ -109,6 +109,10 @@ const eventController = (() => {
                 displayController.editTodo(e.target.closest('.todo'))
                 M.textareaAutoResize(document.querySelector('#edit_todo_body')) // triggering autoresize for textarea                
             }
+            // Delete todo button
+            else if (e.target.classList.contains('delete-todo-btn')) {
+                displayController.deleteTodo(e.target.closest('.todo'))
+            }
         })
 
         // Edit todo form
@@ -127,6 +131,23 @@ const eventController = (() => {
             displayController.updateTodo(currentTodoId, attributes)
             displayController.closeModal('#edit-todo-modal')
         })
+
+        // Delete todo form
+        const deleteTodoForm = document.querySelector('#delete-todo-modal')
+        deleteTodoForm.addEventListener('submit', deleteTodoFormHandler)
+        window.addEventListener('keypress', (e) => {
+            if (deleteTodoForm.classList.contains('open') && e.key === 'Enter') {
+                deleteTodoFormHandler()
+            }
+        })
+        function deleteTodoFormHandler() {
+            let currentProjectId = document.querySelector('.project-active').getAttribute('data-project-id')
+            let currentTodoId = document.querySelector('#delete-todo-modal').getAttribute('data-todo-id')
+            let updatedProject = Project.deleteTodo(currentProjectId, currentTodoId)
+            Storage.saveProject(updatedProject)
+            displayController.destroyTodo(currentTodoId)
+            displayController.closeModal('#delete-todo-modal')
+        }
 
         // (for mobile) Back to projects list
         const backToProjectsListBtn = document.querySelector('#back-to-projects-list-btn')

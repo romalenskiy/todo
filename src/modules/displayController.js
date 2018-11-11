@@ -109,8 +109,8 @@ const displayController = (() => {
         projectNameList.innerHTML = projectNamePage.innerHTML = projectName
     }
 
-    // Delete project
-    const deleteProject = (project) => {
+    // Deleting project from DOM
+    const destroyProject = (project) => {
         project.remove()
         hideProjectPage() //for mobile
         displayPlaceholderPage()
@@ -183,9 +183,20 @@ const displayController = (() => {
         }
     }
 
+    // Insert todo id to delete modal
+    const deleteTodo = (todo) => {
+        document.querySelector('#delete-todo-modal').setAttribute('data-todo-id', todo.getAttribute('data-todo-id'))
+    }
+
+    // Deleting todo from DOM
+    const destroyTodo = (todoId) => {
+        let todo = document.querySelector(`.todo[data-todo-id="${todoId}"]`)
+        todo.remove()
+    }
+
     return{ initMaterialize, initRendering, renderProject, closeModal, makeProjectActive, showProjectPage, 
-            hideProjectPage, renderProjectPage, editProject, updateProject, deleteProject, renderTodo, toggleTodoCompleteness,
-            editTodo, updateTodo }
+            hideProjectPage, renderProjectPage, editProject, updateProject, destroyProject, renderTodo, toggleTodoCompleteness,
+            editTodo, updateTodo, deleteTodo, destroyTodo }
 })()
 
 export default displayController
