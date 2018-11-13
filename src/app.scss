@@ -166,7 +166,7 @@
     flex-flow: row wrap;
     align-items: baseline;
     h4 {
-        word-break: break-all;
+        word-break: break-word;
     }
 }
 
@@ -221,12 +221,12 @@
 }
 
 .todo-body {
-    white-space: pre-line;
-    word-break: break-all;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 .todo-header {
-    word-break: break-all;
+    word-break: break-word;
     margin-right: 1rem;
 }
 

@@ -7126,7 +7126,7 @@ input[type=range]::-ms-thumb {
       -ms-flex-align: baseline;
           align-items: baseline; }
   .project-page-header h4 {
-    word-break: break-all; }
+    word-break: break-word; }
 
 .importance {
   background-image: url(img/importance_empty.svg);
@@ -7168,11 +7168,11 @@ input[type=range]::-ms-thumb {
     font-size: 1.5rem; }
 
 .todo-body {
-  white-space: pre-line;
-  word-break: break-all; }
+  white-space: pre-wrap;
+  word-break: break-word; }
 
 .todo-header {
-  word-break: break-all;
+  word-break: break-word;
   margin-right: 1rem; }
 
 .todo-btn {
