@@ -69,8 +69,10 @@ const displayController = (() => {
     const showProjectPage = () => {
         const projectPage = document.querySelector('.project-page')
         const projectsList = document.querySelector('.projects-list')
+        const backToProjectsListBtn = document.querySelector('#back-to-projects-list-btn')
         projectPage.classList.add('show')
         projectsList.classList.add('hide-for-small-only')
+        backToProjectsListBtn.classList.remove('hide')
         hidePlaceholderPage()
     }
 
@@ -78,8 +80,10 @@ const displayController = (() => {
     const hideProjectPage = () => {
         const projectPage = document.querySelector('.project-page')
         const projectsList = document.querySelector('.projects-list')
+        const backToProjectsListBtn = document.querySelector('#back-to-projects-list-btn')
         projectPage.classList.remove('show')
         projectsList.classList.remove('hide-for-small-only')
+        backToProjectsListBtn.classList.add('hide')
     }
 
     // Rendering project page 
