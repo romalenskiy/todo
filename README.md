@@ -1,5 +1,7 @@
 # ToDo
 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 ## Start setup
 
 Starting project locally:
@@ -24,9 +26,9 @@ npm run watch
 
 - You can clear the entire local storage by command in inspector console:
 
-```js
-localStorage.clear()
-```
+  ```js
+  localStorage.clear()
+  ```
 
 - Application contains seeds. Seeds render for the first application launch and after each local storage clearing.
 
