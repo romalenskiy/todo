@@ -7,7 +7,7 @@ const displayController = (() => {
     let collapsible = document.querySelectorAll('.collapsible.expandable')
     M.Collapsible.init(collapsible, { accordion: false })
 
-    document.querySelectorAll('.modal')
+    let modals = document.querySelectorAll('.modal')
     M.Modal.init(modals, { onOpenEnd: () => {
       document.querySelector('#project_name').focus()
       document.querySelector('#edit_project_name').focus()
