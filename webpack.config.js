@@ -12,56 +12,66 @@ module.exports = {
   },
   module: {
     rules: [
-        {
-          test: /\.css$/,
-          use: [
-            MiniCssExtractPlugin.loader, 
-            "css-loader", 
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: [
-                  autoprefixer({
-                    browsers:['ie >= 8', 'last 10 version']
-                  })
-                ],
-                sourceMap: true
-              }
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader, 
+          "css-loader", 
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                autoprefixer({
+                  browsers:['ie >= 8', 'last 10 version']
+                })
+              ],
+              sourceMap: true
             }
-          ]
-        },
-        {
-          test: /\.scss$/,
-          use: [
-            MiniCssExtractPlugin.loader, 
-            "css-loader", 
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: [
-                  autoprefixer({
-                    browsers:['ie >= 8', 'last 4 version']
-                  })
-                ],
-                sourceMap: true
-              }
-            }, 
-            "sass-loader"
-          ]
-        },
-        {
-          test: /\.(png|jpg|svg|gif)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                  name: '[path][name].[ext]',
-                  context: path.resolve(__dirname, "src/")
-              }
+          }
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader, 
+          "css-loader", 
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                autoprefixer({
+                  browsers:['ie >= 8', 'last 4 version']
+                })
+              ],
+              sourceMap: true
             }
-          ]
-        },
-        { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
+          }, 
+          "sass-loader"
+        ]
+      },
+      {
+        test: /\.(png|jpg|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+                name: '[path][name].[ext]',
+                context: path.resolve(__dirname, "src/")
+            }
+          }
+        ]
+      },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
     ]
   },
   plugins: [
